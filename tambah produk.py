@@ -3,6 +3,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from login import Test_login
 import time
 
 class Test_Tambah_Produk(unittest.TestCase):
@@ -12,18 +13,8 @@ class Test_Tambah_Produk(unittest.TestCase):
     def test_a_success_tambah_produk(self):
         browser = self.browser
         browser.maximize_window()
-
-        browser.get("https://kasirdemo.belajarqa.com/") #url
-        time.sleep(1)
-        browser.find_element(By.ID,"email").send_keys("akunml24@gmail.com") #input email
-        time.sleep(1)
-        browser.find_element(By.ID,"password").send_keys("Akunml24") #input password
-        time.sleep(1)
-        browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div/div[2]/div/button").click() #click login
-        time.sleep(2)
-
-        response_message = browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div/div[2]/div/div[1]/div[1]/div").text #validasi
-        self.assertIn('hai', response_message)
+        
+        Test_login.test_a_success_login(self)
 
         browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div[1]/div/a[6]").click() #klikproduk
         time.sleep(1)
@@ -52,6 +43,7 @@ class Test_Tambah_Produk(unittest.TestCase):
 
         self.assertEqual(response_message, 'success')
         self.assertEqual(response_message2, 'item ditambahkan')
+
     
     def tearDown(self):
         self.browser.close()

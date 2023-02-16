@@ -15,12 +15,9 @@ class Test_login(unittest.TestCase):
 
         browser.get("https://kasirdemo.belajarqa.com/") #url
         time.sleep(1)
-        browser.find_element(By.ID,"email").send_keys("akunml24@gmail.com") #input email
-        time.sleep(1)
-        browser.find_element(By.ID,"password").send_keys("Akunml24") #input password
-        time.sleep(1)
-        browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div/div[2]/div/button").click() #click login
-        time.sleep(2)
+        browser.find_element(By.ID,"email").send_keys("akunml24@gmail.com")
+        browser.find_element(By.ID,"password").send_keys("Akunml24")
+        browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div/div[2]/div/button").click()
 
         response_message = browser.find_element(By.XPATH,"/html/body/div[1]/div/div/div/div[2]/div/div[1]/div[1]/div").text #validasi
         self.assertIn('hai', response_message)
